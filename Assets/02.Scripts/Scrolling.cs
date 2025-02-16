@@ -25,6 +25,10 @@ public class Scrolling : MonoBehaviour
    
     void Update()
     {
-        meshRenderer.material.mainTextureOffset += new Vector2(scrollSpeed*Time.deltaTime, 0);   
+        
+
+        
+        meshRenderer.material.mainTextureOffset += new Vector2(scrollSpeed*Time.deltaTime, 0); 
+        
     }
 }
