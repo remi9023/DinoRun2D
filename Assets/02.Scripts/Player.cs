@@ -27,8 +27,15 @@ public class Player : MonoBehaviour
             isGround = false;
         }
     }
-
-    // 착지 감지
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))  // 지면과 충돌했을 때
+        {
+            isGround = true;
+            anim.SetBool("isGround", true);  // 다시 달리기 애니메이션 실행
+        }
     }
+    // 착지 감지
+
+}
 
