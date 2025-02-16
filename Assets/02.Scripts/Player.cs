@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private bool isGround = true;  // 플레이어가 땅에 있는지 확인
     private Rigidbody2D rb;  // Rigidbody2D 참조
     private Animator anim;  // Animator 참조
+    public Transform groundCheckPoint; // 빨간 점의 위치
+    public LayerMask whatIsGround; // Ground 비교하는 LayerMask
 
     void Start()
     {
@@ -36,6 +38,6 @@ public class Player : MonoBehaviour
         }
     }
     // 착지 감지
-
+    // isGround = Physics2D. OverlapCircle(groundCheckPoint.position, 0.2f, WhatisGround);
 }
 
