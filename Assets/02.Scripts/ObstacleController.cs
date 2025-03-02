@@ -24,4 +24,5 @@ public class ObstacleController : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 }

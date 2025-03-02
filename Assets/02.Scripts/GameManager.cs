@@ -42,4 +42,16 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            Debug.Log("°ÔÀÓ ¿À¹ö");
+        }
+        else if (collision.CompareTag("Point"))
+        {
+            Debug.Log("Á¡¼ö È¹µæ");
+        }
+    }
 }
+
