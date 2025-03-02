@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance; // 싱글톤 인스턴스를 저장할 정적 변수
     public Transform[] spawnPoints;
     public GameObject[] obstacles;
 
@@ -11,6 +15,20 @@ public class GameManager : MonoBehaviour
     private float spawnTimer; // 스폰하기 위한 타이머(시간을 재기 위한 변수)
     public bool isSpawning; // 스폰을 하기 위한 변수, true면 스폰 되고, false면 스폰이 되지 않는다.
     private int spawnTracker; // 어떤 장애물을 스폰할지 픽하기 위한 변수 ( 0 : 선인장1, 1: 선인장2, 2: 선인장3, 3 : 선인장4, 4 : 익룡 )
+    public int mainScore; // 실제로 게임 도중 1씩 더해질 int형 변수
+    public TextMeshProUGUI mainScore_text; // 게임 화면의 우측 상단의 ScoreText(TMP)오브젝트의 Text 부분을 담기 위한 변수.
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this; // 인스턴스가 존재하지 않으면 현재 오브젝트를 인스턴스로 설정하고 유지
+        }
+    }
     void Start()
     {
         spawnTimer = spawnDelay;
@@ -50,8 +68,15 @@ public class GameManager : MonoBehaviour
         }
         else if (collision.CompareTag("Point"))
         {
-            Debug.Log("점수 획득");
+            GameManager.instance.Score_UI_Update(); // 싱글톤을 접근 가능한 인스턴스를 통해 Score_UI_Update함수에 바로 접근.
         }
     }
+    public void Score_UI_Update()
+    {
+        mainScore++; // mainScore 변수에 1을 더한다.
+        mainScore_text.text ="스코어 : " + mainScore.ToString(); // mainScoreText에 mainScore변수 값 출력
+    }
+
+
 }
 

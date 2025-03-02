@@ -53,6 +53,9 @@ public class DinoController : MonoBehaviour
         boxCollider.offset = savedOffset;
         boxCollider.size = savedSize;
     }
+  
+
+
     void SetDownArrowDown()
     {
         anim.SetBool("isDown", true); // Dino에니메이터에서 조건 isDown을 true로
@@ -68,6 +71,17 @@ public class DinoController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckPoint.position, 0.2f);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            Debug.Log("게임 오버");
+        }
+        else if (collision.CompareTag("Point"))
+        {
+            GameManager.instance.Score_UI_Update(); // 싱글톤을 접근 가능한 인스턴스를 통해 Score_UI_Update함수에 바로 접근.
+        }
     }
 }
    
