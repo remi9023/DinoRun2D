@@ -20,4 +20,8 @@ public class ObstacleController : MonoBehaviour
         Debug.Log("선인장과 충돌했다!!");
     }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
