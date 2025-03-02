@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private int spawnTracker; // 어떤 장애물을 스폰할지 픽하기 위한 변수 ( 0 : 선인장1, 1: 선인장2, 2: 선인장3, 3 : 선인장4, 4 : 익룡 )
     public int mainScore; // 실제로 게임 도중 1씩 더해질 int형 변수
     public TextMeshProUGUI mainScore_text; // 게임 화면의 우측 상단의 ScoreText(TMP)오브젝트의 Text 부분을 담기 위한 변수.
+    public GameObject gameOver_Panel; // GameOver 윈도우 패널 GameOver시에 창을 활성화 해주기 위한 변수.
+    public TextMeshProUGUI bestScore_text; // 나의 역대 최고 점수 BestScoreText.
+    public TextMeshProUGUI endScore_text; // 게임이 끝났을 때 ScoreText
 
     private void Awake()
     {
@@ -75,6 +78,20 @@ public class GameManager : MonoBehaviour
     {
         mainScore++; // mainScore 변수에 1을 더한다.
         mainScore_text.text ="스코어 : " + mainScore.ToString(); // mainScoreText에 mainScore변수 값 출력
+    }
+    public void GameOver()
+    {
+        Time.timeScale = 0f; // Unity에서 게임의 시간 흐름을 멈춤.
+        if (mainScore > PlayerPrefs.GetInt("BestScore",0)) // 현재 메인 점수가, 저장돼 있던 베스트 점수(없다면 기본값은 0)보다 높다면
+        {
+            PlayerPrefs.SetInt("BestScore", mainScore); // 베스트 점수에 메인 점수를 넣어주고 저장.
+        }
+        bestScore_text.text = "Best Score : " + PlayerPrefs.GetInt("BestScore").ToString(); // 베스트 점수는 저장되어있던 베스트 점수를 불러서 보여줌.
+        endScore_text.text = "Score : " + mainScore.ToString(); // 마지막 점수는 MainScore점수를 문자화 해서 넣어줌.
+        gameOver_Panel.SetActive(true); // GameOver패널 활성화.
+    }
+    public void RestartGame()
+    {
     }
 
 
