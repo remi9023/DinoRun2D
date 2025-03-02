@@ -1350,7 +1350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &803927183
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2148,6 +2148,9 @@ MonoBehaviour:
   isSpawning: 1
   mainScore: 0
   mainScore_text: {fileID: 231051987}
+  gameOver_Panel: {fileID: 803927182}
+  bestScore_text: {fileID: 625288678}
+  endScore_text: {fileID: 1560938813}
 --- !u!4 &1572254840
 Transform:
   m_ObjectHideFlags: 0
